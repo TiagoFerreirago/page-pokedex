@@ -2,6 +2,11 @@
 const pokeApi = {};
 //define a paginação da requisição
 //define a quatidade de elementos
+pokeApi.getPokemonDetail = (pokemon) => {
+    return fetch(pokemon.url)
+    .then((response) => response.json())
+}
+
 pokeApi.getPokemons = (offset = 0, limit = 10) => {
   //o fetch faz a promessa de retorna um responta
 
@@ -15,6 +20,11 @@ pokeApi.getPokemons = (offset = 0, limit = 10) => {
    //se o retorno tiver apenas 1 linha nao precisa de corpo
    .then((response) => response.json()) // Converte os dados em JSON
    .then((jsonBody) => jsonBody.results) // Extrai a lista de Pokémons
+   .then((pokemons) => pokemons.map((pokemon) => pokeApi.getPokemonDetail(pokemon)))
+   .then((detailRequests) => Promise.all(detailRequests))
+   .then((result) => result)
+
    .catch((error) => console.error(error)); // Trata possíveis erros
 
 }
+
