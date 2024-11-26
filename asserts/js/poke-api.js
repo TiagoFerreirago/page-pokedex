@@ -4,8 +4,8 @@ const pokeApi = {};
 function convertDetailToPokemon(pokeDetail){
     const pokemom = new Pokemon();
     pokemom.name = pokeDetail.name;
-    pokemom.number = pokeDetail.order;
-    const types = pokeDetail.types.map((typeSlot => typeSlot.type.name));
+    pokemom.number = pokeDetail.id;
+    const types = pokeDetail.types.map((typeSlot) => typeSlot.type.name);
     const[type] = types; // pegando o primeira posição
     pokemom.types = types;
     pokemom.type =  type;

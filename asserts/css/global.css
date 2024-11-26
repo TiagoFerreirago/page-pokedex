@@ -3,19 +3,20 @@
 *{
     box-sizing: border-box;
     font-family: 'Roboto', 'sans-serif';
-    font-weight: 400;
+    font-weight: 700;
 }
 body {
-    background-color: #f6f8fc;
+    background-image: linear-gradient(to right, #80b0ab,#dbd1b3);
 }
 
 .content{
     /*medida flexivel = */
     padding: 1rem;
-    background-color: #ffffff;
+    
     /*tamanho da tela*/
     height: 100vh;
     width: 100vw;
+    
 }
 
 @media screen and (min-width: 992px) {
