@@ -21,10 +21,18 @@ const pokemonHtml = document.getElementById('pokemonList');
 //pokemonHtml.appendChild()
 
 
-    pokeApi.getPokemons().then((pokemonList) => {
-        for (let i = 0; i < pokemonList.length; i++) {
-            const pokemon = pokemonList[i];
-            pokemonHtml.innerHTML += convertePokemonToHtml(pokemon);    
-        }
-    })
+    pokeApi.getPokemons().then((pokemonList =[]) => {
+        //map substitui o for na conversao
+
+        const listObjectToHttp = pokemonList.map((pokemon) => convertePokemonToHtml(pokemon)).join('');
+          
+            // join concatenar elementos
+      
+        pokemonHtml.innerHTML =  listObjectToHttp;
+      
+        console.log(pokemonHtml);
+
+    }
+)
+    
     
