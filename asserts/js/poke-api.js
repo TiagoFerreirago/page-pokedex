@@ -1,10 +1,25 @@
 
 const pokeApi = {};
+
+function convertDetailToPokemon(pokeDetail){
+    const pokemom = new Pokemon();
+    pokemom.name = pokeDetail.name;
+    pokemom.number = pokeDetail.order;
+    const types = pokeDetail.types.map((typeSlot => typeSlot.type.name));
+    const[type] = types; // pegando o primeira posição
+    pokemom.types = types;
+    pokemom.type =  type;
+    pokemom.img = pokeDetail.sprites.other.dream_world.front_default;
+
+    return pokemom;
+}
+
 //define a paginação da requisição
 //define a quatidade de elementos
 pokeApi.getPokemonDetail = (pokemon) => {
     return fetch(pokemon.url)
     .then((response) => response.json())
+    .then(convertDetailToPokemon)
 }
 
 pokeApi.getPokemons = (offset = 0, limit = 10) => {
@@ -20,7 +35,7 @@ pokeApi.getPokemons = (offset = 0, limit = 10) => {
    //se o retorno tiver apenas 1 linha nao precisa de corpo
    .then((response) => response.json()) // Converte os dados em JSON
    .then((jsonBody) => jsonBody.results) // Extrai a lista de Pokémons
-   .then((pokemons) => pokemons.map((pokemon) => pokeApi.getPokemonDetail(pokemon)))
+   .then((pokemons) => pokemons.map((pokemon) => pokeApi.getPokemonDetail(pokemon)))//pegando os atributos
    .then((detailRequests) => Promise.all(detailRequests))
    .then((result) => result)
 
