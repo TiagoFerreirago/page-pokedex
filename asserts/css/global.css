@@ -5,9 +5,7 @@
     font-family: 'Roboto', 'sans-serif';
     font-weight: 700;
 }
-body {
-    background-image: linear-gradient(to right, #80b0ab,#dbd1b3);
-}
+
 
 .content{
     /*medida flexivel = */
